@@ -1,0 +1,2 @@
+/home/zampese/VSCode/cs/background-tasks/bin/Release/net10.0/linux-x64/publish/background-tasks.pdb
+/home/zampese/VSCode/cs/background-tasks/bin/Release/net10.0/linux-x64/publish/background-tasks

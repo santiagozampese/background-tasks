@@ -1,0 +1,14 @@
+/home/zampese/VSCode/cs/background-tasks/bin/Debug/net10.0/background-tasks
+/home/zampese/VSCode/cs/background-tasks/bin/Debug/net10.0/background-tasks.deps.json
+/home/zampese/VSCode/cs/background-tasks/bin/Debug/net10.0/background-tasks.runtimeconfig.json
+/home/zampese/VSCode/cs/background-tasks/bin/Debug/net10.0/background-tasks.dll
+/home/zampese/VSCode/cs/background-tasks/bin/Debug/net10.0/background-tasks.pdb
+/home/zampese/VSCode/cs/background-tasks/obj/Debug/net10.0/background-tasks.GeneratedMSBuildEditorConfig.editorconfig
+/home/zampese/VSCode/cs/background-tasks/obj/Debug/net10.0/background-tasks.AssemblyInfoInputs.cache
+/home/zampese/VSCode/cs/background-tasks/obj/Debug/net10.0/background-tasks.AssemblyInfo.cs
+/home/zampese/VSCode/cs/background-tasks/obj/Debug/net10.0/background-tasks.csproj.CoreCompileInputs.cache
+/home/zampese/VSCode/cs/background-tasks/obj/Debug/net10.0/background-tasks.dll
+/home/zampese/VSCode/cs/background-tasks/obj/Debug/net10.0/refint/background-tasks.dll
+/home/zampese/VSCode/cs/background-tasks/obj/Debug/net10.0/background-tasks.pdb
+/home/zampese/VSCode/cs/background-tasks/obj/Debug/net10.0/background-tasks.genruntimeconfig.cache
+/home/zampese/VSCode/cs/background-tasks/obj/Debug/net10.0/ref/background-tasks.dll

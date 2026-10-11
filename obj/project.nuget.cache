@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "h7VrCrJWL7k=",
+  "success": true,
+  "projectFilePath": "/home/zampese/VSCode/cs/background-tasks/background-tasks.csproj",
+  "expectedPackageFiles": [
+    "/home/zampese/.nuget/packages/microsoft.net.illink.tasks/10.0.12/microsoft.net.illink.tasks.10.0.12.nupkg.sha512",
+    "/home/zampese/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/10.0.12/microsoft.netcore.app.runtime.linux-x64.10.0.12.nupkg.sha512",
+    "/home/zampese/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/10.0.12/microsoft.aspnetcore.app.runtime.linux-x64.10.0.12.nupkg.sha512",
+    "/home/zampese/.nuget/packages/microsoft.netcore.app.host.linux-x64/10.0.12/microsoft.netcore.app.host.linux-x64.10.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}
