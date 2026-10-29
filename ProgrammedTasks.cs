@@ -41,12 +41,13 @@ public static class ProgrammedTasks
 
     public static void ProgrammTask(string task, List<string> arguments, string timeout, bool autostart)
     {
-        if (!Directory.Exists(Program.directoryPath))
+        var path = $"{Program.GetHome()}/{Program.directoryPath}";
+        if (!Directory.Exists(path))
         {
-            Directory.CreateDirectory(Program.directoryPath);
+            Directory.CreateDirectory(path);
         }
 
-        Directory.SetCurrentDirectory(Program.directoryPath);
+        Directory.SetCurrentDirectory(path);
 
         ParseTimeout(timeout);
 
@@ -61,14 +62,21 @@ public static class ProgrammedTasks
         var json = JsonSerializer.Serialize(taskData, ProgrammedTaskDataContext.Default.ProgrammedTaskData);
         File.WriteAllText($"{task}.json", json);
 
-        Directory.SetCurrentDirectory(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+        if (!string.IsNullOrWhiteSpace(Program.realUser))
+        {     
+            var chown = Program.ExecuteCommand("chown", $"-R {Program.realUser}:{Program.realUser} \"{path}\"");
+            chown.WaitForExit();
+        }
+
+        Directory.SetCurrentDirectory(Program.GetHome());
     }
 
     public static void DeleteProgrammTask(string task)
     {
         if (!Directory.Exists(Program.directoryPath))
         {
-            Directory.CreateDirectory(Program.directoryPath);
+            Console.WriteLine("There are no saved tasks.");
+            return;
         }
 
         Directory.SetCurrentDirectory(Program.directoryPath);
@@ -78,14 +86,14 @@ public static class ProgrammedTasks
         {
             File.Delete(filePath);
         }
-        Directory.SetCurrentDirectory(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+        Directory.SetCurrentDirectory(Program.GetHome());
     }
 
     public static async Task GetProgrammTasks()
     {
         if (!Directory.Exists(Program.directoryPath))
         {
-            Directory.CreateDirectory(Program.directoryPath);
+            return;
         }
 
         Directory.SetCurrentDirectory(Program.directoryPath);
@@ -100,7 +108,7 @@ public static class ProgrammedTasks
                 _ = Task.Run(() => ExecuteProgrammTask(taskInfo.task));
             }
         }
-        Directory.SetCurrentDirectory(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+        Directory.SetCurrentDirectory(Program.GetHome());
     }
 
     public static async Task ExecuteProgrammTask(string task)
@@ -109,7 +117,7 @@ public static class ProgrammedTasks
         {
             if (!Directory.Exists(Program.directoryPath))
             {
-                Directory.CreateDirectory(Program.directoryPath);
+                return;
             }
 
             Directory.SetCurrentDirectory(Program.directoryPath);
@@ -120,7 +128,7 @@ public static class ProgrammedTasks
                 var json = await File.ReadAllTextAsync(filePath);
                 var taskInfo = JsonSerializer.Deserialize(json, ProgrammedTaskDataContext.Default.ProgrammedTaskData);
 
-                Directory.SetCurrentDirectory(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+                Directory.SetCurrentDirectory(Program.GetHome());
 
                 if (taskInfo != null)
                 {
@@ -137,7 +145,7 @@ public static class ProgrammedTasks
         catch (Exception)
         {
             Console.WriteLine("An error occurred while executing the program task.");
-            Directory.SetCurrentDirectory(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+            Directory.SetCurrentDirectory(Program.GetHome());
             throw;
         }
     }

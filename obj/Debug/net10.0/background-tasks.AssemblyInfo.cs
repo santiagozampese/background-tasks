@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("background-tasks")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b9fdd4ba06a1c5ac69ff2d88a8335a84e2b0056")]
 [assembly: System.Reflection.AssemblyProductAttribute("background-tasks")]
 [assembly: System.Reflection.AssemblyTitleAttribute("background-tasks")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

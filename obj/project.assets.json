@@ -2,15 +2,7 @@
   "version": 3,
   "targets": {
     "net10.0": {
-      "Microsoft.NET.ILLink.Tasks/10.0.12": {
-        "type": "package",
-        "build": {
-          "build/Microsoft.NET.ILLink.Tasks.props": {}
-        }
-      }
-    },
-    "net10.0/linux-x64": {
-      "Microsoft.NET.ILLink.Tasks/10.0.12": {
+      "Microsoft.NET.ILLink.Tasks/10.0.14": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -19,10 +11,10 @@
     }
   },
   "libraries": {
-    "Microsoft.NET.ILLink.Tasks/10.0.12": {
-      "sha512": "TAIL+a3ZwsY9iWioFxJAal2ViYg5OpnU8GWX4ihChjA4U2pjzoBkqmquwX3sG252PZB6213nz0WpXMYIazoEcw==",
+    "Microsoft.NET.ILLink.Tasks/10.0.14": {
+      "sha512": "XWAqjHxYj1M7RLohprpooL3a/+E9CfjsPvmuZzjO7X0CxOY4kNhRjZiK5ooRTZBMYzC5karrQ6Rq5fz9zi8V8w==",
       "type": "package",
-      "path": "microsoft.net.illink.tasks/10.0.12",
+      "path": "microsoft.net.illink.tasks/10.0.14",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -34,7 +26,7 @@
         "build/Microsoft.NET.ILLink.Analyzers.props",
         "build/Microsoft.NET.ILLink.Tasks.props",
         "build/Microsoft.NET.ILLink.targets",
-        "microsoft.net.illink.tasks.10.0.12.nupkg.sha512",
+        "microsoft.net.illink.tasks.10.0.14.nupkg.sha512",
         "microsoft.net.illink.tasks.nuspec",
         "tools/net/ILLink.Tasks.deps.json",
         "tools/net/ILLink.Tasks.dll",
@@ -55,7 +47,7 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "Microsoft.NET.ILLink.Tasks >= 10.0.12"
+      "Microsoft.NET.ILLink.Tasks >= 10.0.14"
     ]
   },
   "packageFolders": {
@@ -105,7 +97,7 @@
           "Microsoft.NET.ILLink.Tasks": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[10.0.12, )",
+            "version": "[10.0.14, )",
             "autoReferenced": true
           }
         },
@@ -120,26 +112,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-            "version": "[10.0.12, 10.0.12]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.linux-x64",
-            "version": "[10.0.12, 10.0.12]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-            "version": "[10.0.12, 10.0.12]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.112/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.114/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -414,11 +392,6 @@
           "System.Xml.XPath": "(,4.3.32767]",
           "System.Xml.XPath.XDocument": "(,5.0.32767]"
         }
-      }
-    },
-    "runtimes": {
-      "linux-x64": {
-        "#import": []
       }
     }
   }

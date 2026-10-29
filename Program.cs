@@ -7,10 +7,11 @@ public static class Program
     private static extern int mkfifo(string pathname, uint mode);
 
     public static List<Process> processes = new List<Process>();
-    public static readonly string pipePath = ".task";
+    public static string pipePath = ".task";
 
     public static readonly string directoryPath = ".background-tasks";
 
+    public static string? realUser = "";
     public static Dictionary<string, Action> commands = new()
     {
         {"-h" , Help},
@@ -23,11 +24,19 @@ public static class Program
 
     public static async Task Main(string[] args)
     {
-        Directory.SetCurrentDirectory(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
-        var path = $"/home/{Environment.UserName}/{pipePath}";
-        if (!File.Exists(path))
+        Directory.SetCurrentDirectory(GetHome());
+        realUser = Environment.GetEnvironmentVariable("SUDO_USER");
+
+        pipePath = $"{GetHome()}/{pipePath}";
+
+        if (!File.Exists(pipePath))
         {
-            mkfifo(path, 438);
+            mkfifo(pipePath, 438);
+            if (!string.IsNullOrWhiteSpace(Program.realUser))
+            {             
+                var chown = Program.ExecuteCommand("chown", $"{realUser}:{realUser} \"{pipePath}\"");
+                chown.WaitForExit();
+            }
         }
 
         try
@@ -47,7 +56,7 @@ public static class Program
                 Console.WriteLine("Initializing background tasks...");
                 await ProgrammedTasks.GetProgrammTasks();
 
-                Console.WriteLine("Listening for tasks... (use 'echo \"[command]\" > .task' to send a task)");
+                Console.WriteLine("Listening for tasks... (use 'echo \"[command]\" > ~/.task' to send a task)");
 
                 using var stream = new FileStream(pipePath, FileMode.Open, FileAccess.Read);
                 using var reader = new StreamReader(stream);
@@ -96,7 +105,7 @@ public static class Program
                 }
             }
 
-            if (command == "start-programm")
+            if (command == "start")
             {
                 var taskName = task.Split()[1];
                 _ = Task.Run(() => ProgrammedTasks.ExecuteProgrammTask(taskName));
@@ -163,6 +172,21 @@ public static class Program
         }
     }
 
+    public static string GetHome()
+    {
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            string? sudoUser = Environment.GetEnvironmentVariable("SUDO_USER");
+
+            if (!string.IsNullOrEmpty(sudoUser))
+            {
+                return $"/home/{sudoUser}";
+            }
+        }
+
+        return Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+    }
+
     public static Process ExecuteCommand(string command, string args)
     {
         try
@@ -197,12 +221,12 @@ public static class Program
         --delete-programm       - delete a programm task
 
         Use the commands:
-        use 'echo "[command] > .task"' for init a task
+        use 'echo "[command] > ~/.task"' for init a task
 
         Commands:
         exec [executable]       - execute the file
         kill [process name]     - kill all tasks with the same process name (kill all without parameter)
-        start-programm [task]   - start a non-autostart programmed task
+        start [task]            - start a non-autostart programmed task
         """);
     }
 

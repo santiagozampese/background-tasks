@@ -12,3 +12,4 @@
 /home/zampese/VSCode/cs/background-tasks/obj/Debug/net10.0/background-tasks.pdb
 /home/zampese/VSCode/cs/background-tasks/obj/Debug/net10.0/background-tasks.genruntimeconfig.cache
 /home/zampese/VSCode/cs/background-tasks/obj/Debug/net10.0/ref/background-tasks.dll
+/home/zampese/VSCode/cs/background-tasks/obj/Debug/net10.0/background-tasks.sourcelink.json
